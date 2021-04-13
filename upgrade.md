@@ -174,7 +174,7 @@ If you would like to release a lock without respecting its current owner, you ma
 
 In order to be fully compliant with `PSR-16` the return values of the `put` and `forever` methods of the `Illuminate\Contracts\Cache\Repository` contract and the return values of the `put`, `putMany` and `forever` methods of the `Illuminate\Contracts\Cache\Store` contract [have been changed](https://github.com/laravel/framework/pull/26726) from `void` to `bool`.
 
-<a name="#carbon-2.0"></a>
+<a name="carbon-2.0"></a>
 ### Carbon 2.0
 
 **Likelihood Of Impact: Medium**
@@ -527,6 +527,10 @@ The session persistence logic has been [moved from the `terminate()` method to t
 All `array_*` and `str_*` global helpers [have been deprecated](https://github.com/laravel/framework/pull/26898). You should use the `Illuminate\Support\Arr` and `Illuminate\Support\Str` methods directly.
 
 The impact of this change has been marked as `medium` since the helpers have been moved to the new [laravel/helpers](https://github.com/laravel/helpers) package which offers a backwards compatibility layer for all of the global array and string functions.
+
+If you choose to update your Laravel application's views to use the class based methods, you should clear your compiled views which may still be using the global helpers:
+
+    php artisan view:clear
 
 <a name="deferred-service-providers"></a>
 #### Deferred Service Providers
